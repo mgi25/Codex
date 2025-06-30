@@ -1,0 +1,19 @@
+.notification-panel {
+  position: absolute;
+  top: 70px;
+  right: 1rem;
+  width: 320px;
+  background: #fff;
+  border-radius: .5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: none;
+  z-index: 1050;
+}
+.notification-panel.show {
+  display: block;
+  animation: slideDown 0.3s ease-out forwards;
+}
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
