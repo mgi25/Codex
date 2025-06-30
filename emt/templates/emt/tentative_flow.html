@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Tentative Flow - Event{% endblock %}
+
+{% block head_extra %}
+  <link rel="stylesheet" href="{% static 'emt/css/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="header">
+    <h1>Tentative Flow for "{{ proposal.event_title }}"</h1>
+    <p>Outline how the event will progress from start to finish.</p>
+  </div>
+
+  <div class="page-content">
+    <form method="post">
+      {% csrf_token %}
+      <div class="section">
+        <h3>Flow Plan</h3>
+        <p>Enter a timeline/sequence of the event.</p>
+        <div class="input-group">
+          {{ form.content.label_tag }}
+          {{ form.content }}
+        </div>
+      </div>
+      <div class="input-group">
+        <button type="submit" class="btn">Save & Continue</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    window.PROPOSAL_ID = "{{ proposal.id|default:'' }}";
+    window.AUTOSAVE_URL = "{% url 'emt:autosave_proposal' %}";
+    window.AUTOSAVE_CSRF = "{{ csrf_token }}";
+  </script>
+  <script src="{% static 'emt/js/autosave_draft.js' %}"></script>
+{% endblock %}
